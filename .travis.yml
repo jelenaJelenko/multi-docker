@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t jelenajelenko/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t boroticinfobip/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run jelenajelenko/react-test npm run test -- --coverage
+  - docker run boroticinfobip/react-test npm run test -- --coverage
 
 after_success:
-  - docker build -t jelenajelenko/multi-client ./client
-  - docker build -t jelenajelenko/multi-nginx ./nginx
-  - docker build -t jelenajelenko/multi-server ./server
-  - docker build -t jelenajelenko/multi-worker ./worker
+  - docker build -t boroticinfobip/multi-client ./client
+  - docker build -t boroticinfobip/multi-nginx ./nginx
+  - docker build -t boroticinfobip/multi-server ./server
+  - docker build -t boroticinfobip/multi-worker ./worker
   #login to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #push images
-  - docker push jelenajelenko/multi-nginx
-  - docker push jelenajelenko/multi-client
-  - docker push jelenajelenko/multi-server
-  - docker push jelenajelenko/multi-worker
+  - docker push boroticinfobip/multi-nginx
+  - docker push boroticinfobip/multi-client
+  - docker push boroticinfobip/multi-server
+  - docker push boroticinfobip/multi-worker
